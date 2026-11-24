@@ -6,6 +6,9 @@
 <title>Beverly Hills Personal Injury Lawyer | Lemon Tree Law</title>
 <meta name="description" content="Beverly Hills personal injury lawyer for car accidents, dog bites &amp; slip and falls in LA, plus California lemon law. Free consultation &mdash; no fee unless we win.">
 <link rel="canonical" href="https://lemontreelaw.com/">
+<link rel="alternate" hreflang="en" href="https://lemontreelaw.com/">
+<link rel="alternate" hreflang="es" href="https://lemontreelaw.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://lemontreelaw.com/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" href="logo_makan.svg" type="image/svg+xml">
 <meta name="theme-color" content="#0C120D">
@@ -875,6 +878,7 @@ body.menu-open .nav{
     <a href="#about">The Attorney</a>
     <a href="#faq">FAQ</a>
     <a class="nav-cta" href="tel:8335668733">(833) 566-8733</a>
+    <a class="nav-home nav-lang" href="es/" hreflang="es" lang="es">Espa&ntilde;ol</a>
   </div>
   <button class="nav-burger" id="burger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -887,7 +891,11 @@ body.menu-open .nav{
 <header class="hero" id="top">
   <div class="hero-media">
     <div class="fallback"></div>
-    <video id="heroVideo" src="hero.mp4" muted playsinline preload="auto" poster="hero_poster.jpg"></video>
+    <!-- phones get the lighter encode (hero-mobile.mp4, ~4.9 MB); larger screens get the full one -->
+    <video id="heroVideo" muted playsinline preload="auto" poster="hero_poster.jpg">
+      <source src="hero-mobile.mp4" type="video/mp4" media="(max-width: 820px)">
+      <source src="hero.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="hero-scrim"></div>
 
@@ -938,25 +946,25 @@ body.menu-open .nav{
     <div class="ledger">
       <div class="ledger-row rv">
         <div class="ledger-no">No. 001</div>
-        <div class="ledger-amt" data-count="1400000" data-prefix="$">$0</div>
+        <div class="ledger-amt" data-count="1400000" data-prefix="$">$1,400,000</div>
         <div class="ledger-type">Car Accident</div>
         <p class="ledger-note">A hotly disputed collision in which a witness placed our client at fault. We dismantled the account and secured a seven-figure recovery.</p>
       </div>
       <div class="ledger-row rv">
         <div class="ledger-no">No. 002</div>
-        <div class="ledger-amt" data-count="250000" data-prefix="$">$0</div>
+        <div class="ledger-amt" data-count="250000" data-prefix="$">$250,000</div>
         <div class="ledger-type">Dog Bite</div>
         <p class="ledger-note">A German Shepherd attack that left our client with permanent scarring. We made certain the recovery reflected the permanence.</p>
       </div>
       <div class="ledger-row rv">
         <div class="ledger-no">No. 003</div>
-        <div class="ledger-amt" data-count="125000" data-prefix="$">$0</div>
+        <div class="ledger-amt" data-count="125000" data-prefix="$">$125,000</div>
         <div class="ledger-type">Motorcycle Accident</div>
         <p class="ledger-note">Side-swiped while lane-splitting. We recovered $25,000 over the policy limits — money the insurer insisted did not exist.</p>
       </div>
       <div class="ledger-row rv">
         <div class="ledger-no">No. 004</div>
-        <div class="ledger-amt" data-count="150000" data-prefix="$">$0</div>
+        <div class="ledger-amt" data-count="150000" data-prefix="$">$150,000</div>
         <div class="ledger-type">Car Accident</div>
         <p class="ledger-note">A head-on collision around a blind bend with liability heavily disputed. We settled the dispute in our client's favor.</p>
       </div>
