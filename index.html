@@ -903,7 +903,7 @@ body.menu-open .nav{
     <span class="eyebrow rv">Testimonials</span>
     <div class="stars rv" aria-label="Five star rating">★★★★★</div>
     <h2 class="rv">What our clients say<br>when it's <em>over.</em></h2>
-    <p class="rv-rating rating-line rv">Rated <b>Excellent</b> &middot; based on <b>17 Google reviews</b></p>
+    <p class="rv-rating rating-line rv">Rated <b id="gRating">5.0</b> &middot; based on <b id="gCount">60 Google reviews</b></p>
     <p class="rv">Every recovery on our record belongs to a client who trusted us with the worst season of their life. Here is what they said afterward, word for word, on Google.</p>
     <div class="review-grid">
       <blockquote class="review rv">
@@ -1313,6 +1313,25 @@ body.menu-open .nav{
     });
   })();
 
+
+  /* ---------- live Google rating + review count ----------
+     reviews.php (on Hostinger) checks Google once a day. If it isn't there or
+     fails — e.g. on the GitHub preview — the numbers written above stay put. */
+  (function(){
+    const r = document.getElementById('gRating');
+    const c = document.getElementById('gCount');
+    if (!r || !c || !window.fetch) return;
+    fetch('reviews.php', { headers: { 'Accept': 'application/json' } })
+      .then(res => res.ok ? res.json() : null)
+      .then(d => {
+        if (!d || !d.ok) return;
+        const rating = Number(d.rating), count = parseInt(d.count, 10);
+        if (!(rating > 0 && rating <= 5) || !(count > 0)) return;
+        r.textContent = rating.toFixed(1);
+        c.textContent = count.toLocaleString('en-US') + ' Google review' + (count === 1 ? '' : 's');
+      })
+      .catch(() => {});
+  })();
 
   /* ---------- practice-areas dropdown ---------- */
   (function(){
