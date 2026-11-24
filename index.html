@@ -3,8 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lemon Tree Law — Beverly Hills Personal Injury & Lemon Law</title>
-<meta name="description" content="Lemon Tree Law. Beverly Hills attorney for personal injury, lemon law, and insurance bad faith. Free case evaluation: (833) 566-8733.">
+<title>Beverly Hills Personal Injury Lawyer | Lemon Tree Law</title>
+<meta name="description" content="Beverly Hills personal injury lawyer for car accidents, dog bites &amp; slip and falls in LA, plus California lemon law. Free consultation &mdash; no fee unless we win.">
+<link rel="canonical" href="https://lemontreelaw.com/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="icon" href="logo_makan.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0C120D">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lemon Tree Law">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://lemontreelaw.com/">
+<meta property="og:title" content="Beverly Hills Personal Injury Lawyer | Lemon Tree Law">
+<meta property="og:description" content="Car accidents, dog bites, slip and falls and California lemon law. Free consultation, no fee unless we win. (833) 566-8733.">
+<meta property="og:image" content="https://lemontreelaw.com/hero_poster.jpg">
+<meta property="og:image:alt" content="Lady Justice statue on an attorney's desk">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LegalService",
+      "@id": "https://lemontreelaw.com/#firm",
+      "name": "Lemon Tree Law",
+      "description": "Beverly Hills personal injury and California lemon law firm representing people hurt in car accidents, motorcycle accidents, dog bites and slip and falls, and owners of defective vehicles.",
+      "url": "https://lemontreelaw.com/",
+      "logo": "https://lemontreelaw.com/logo_makan.svg",
+      "image": "https://lemontreelaw.com/michael.jpg",
+      "telephone": "+1-833-566-8733",
+      "email": "info@lemontreelaw.com",
+      "priceRange": "Free consultation; contingency fee",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "468 N. Camden Dr., Suite 260",
+        "addressLocality": "Beverly Hills",
+        "addressRegion": "CA",
+        "postalCode": "90210",
+        "addressCountry": "US"
+      },
+      "hasMap": "https://www.google.com/maps?cid=13956665795310876595",
+      "areaServed": [
+        {"@type": "City", "name": "Beverly Hills"},
+        {"@type": "City", "name": "Los Angeles"},
+        {"@type": "AdministrativeArea", "name": "Los Angeles County"},
+        {"@type": "State", "name": "California"}
+      ],
+      "knowsAbout": ["Personal injury law", "Car accidents", "Motorcycle accidents", "Dog bites", "Slip and fall accidents", "Premises liability", "California lemon law", "Song-Beverly Consumer Warranty Act", "Insurance bad faith"],
+      "founder": {"@id": "https://lemontreelaw.com/#michael"},
+      "employee": {"@id": "https://lemontreelaw.com/#michael"},
+      "sameAs": [
+        "https://www.facebook.com/people/Lemon-Tree-Law/100086561163911/",
+        "https://www.instagram.com/lemontreelawfirm/",
+        "https://www.google.com/maps?cid=13956665795310876595"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://lemontreelaw.com/#michael",
+      "name": "Michael Khodabakhsh",
+      "jobTitle": "Founding Attorney",
+      "url": "https://lemontreelaw.com/#about",
+      "image": "https://lemontreelaw.com/michael.jpg",
+      "worksFor": {"@id": "https://lemontreelaw.com/#firm"},
+      "alumniOf": [
+        {"@type": "CollegeOrUniversity", "name": "University of California, Los Angeles"},
+        {"@type": "CollegeOrUniversity", "name": "Southwestern Law School"}
+      ],
+      "knowsAbout": ["Personal injury law", "California lemon law", "Insurance bad faith"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://lemontreelaw.com/#website",
+      "url": "https://lemontreelaw.com/",
+      "name": "Lemon Tree Law",
+      "publisher": {"@id": "https://lemontreelaw.com/#firm"}
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -139,14 +215,16 @@ img,video{display:block;max-width:100%}
 }
 .hero-eyebrow{margin-bottom:1.4rem;display:flex;align-items:center;gap:1rem}
 .hero-eyebrow .rule{width:48px;height:1px;background:var(--citron)}
-.hero h1{
+/* SEO: the keyword H1 sits in the small eyebrow line; the big brand line is a styled <p> */
+.hero-eyebrow h1{font-weight:400;margin:0;line-height:1.5}
+.hero .hero-title{
   font-family:var(--font-display);
   font-weight:340;
   font-size:clamp(3rem,8.2vw,7.2rem);
   line-height:.98;letter-spacing:-.015em;
   max-width:15ch;
 }
-.hero h1 em{
+.hero .hero-title em{
   font-style:italic;font-weight:420;
   color:var(--citron);
   font-variation-settings:"SOFT" 60,"WONK" 1;
@@ -307,6 +385,7 @@ img,video{display:block;max-width:100%}
   margin-top:.9rem;
 }
 .practice-head h2 em{font-style:italic;color:var(--citron)}
+.practice-lede{margin-top:1.4rem;max-width:62ch;color:var(--tx-dim);font-size:.95rem;line-height:1.75}
 .practice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline)}
 @media(max-width:920px){.practice-grid{grid-template-columns:1fr}}
 .pcard{
@@ -385,6 +464,7 @@ img,video{display:block;max-width:100%}
 .qa-body{max-height:0;overflow:hidden;visibility:hidden;transition:max-height .5s cubic-bezier(.7,0,.3,1),visibility 0s linear .5s}
 /* closed answers are hidden from screen readers too, not just squashed to 0px */
 .qa.open .qa-body{visibility:visible;transition-delay:0s}
+.qa-body a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--citron-deep);text-underline-offset:2px}
 .qa-body p{padding:0 0 1.6rem;color:var(--tx-ink-dim);line-height:1.8;font-size:.93rem;max-width:60ch}
 
 /* ---------- contact ---------- */
@@ -720,6 +800,54 @@ body.menu-open .nav{
 .form-status.ok{color:var(--tx-on-dark);background:rgba(216,198,74,.10);border-left:2px solid var(--citron)}
 .form-status.err{color:var(--tx-on-dark);background:rgba(200,80,60,.12);border-left:2px solid #C8503C}
 </style>
+<script type="application/ld+json" id="faq-schema">
+{
+    "@context":  "https://schema.org",
+    "@type":  "FAQPage",
+    "mainEntity":  [
+                       {
+                           "@type":  "Question",
+                           "name":  "What should I do after a car accident in California?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Safety first — get medical help if you need it. Once you\u0027re safe, photograph the scene, exchange information with the other driver, and report the accident to police if necessary. From there, we take over: we deal with the insurance companies and handle the claims process for you. More on car accident and personal injury claims."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "How long do I have to file a personal injury claim?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "In California, you typically have two years from the date of injury. Miss the deadline and you may lose the right to compensation entirely — so speak with a lawyer as early as possible to protect your claim."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "What compensation can I recover?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Medical bills, lost wages, and property damage — plus non-economic damages like pain and suffering. Where the other party\u0027s conduct was extreme, punitive damages may be on the table as well."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "How long will my case take?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Anywhere from a few months to a couple of years, depending on complexity and whether the insurer is willing to settle fairly. If trial is necessary, it can take longer — and we keep you informed at every step either way."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "What does it cost to hire you?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Nothing up front. We work on contingency: no fee unless we win. For lemon law cases, California law generally requires the manufacturer to pay your attorney\u0027s fees on top of your recovery."
+                                              }
+                       }
+                   ]
+}
+</script>
 </head>
 <body>
 
@@ -766,10 +894,10 @@ body.menu-open .nav{
   <div class="hero-inner">
     <div class="hero-eyebrow rv">
       <span class="rule"></span>
-      <span class="eyebrow">Personal Injury · Lemon Law · Insurance Bad Faith</span>
+      <h1 class="eyebrow">Beverly Hills Personal Injury Lawyer &amp; Lemon Law Attorney</h1>
     </div>
-    <h1 class="rv">Their first offer<br>is <em>never</em> the answer.</h1>
-    <p class="hero-sub rv">Beverly Hills attorney for the injured and the wronged. One lawyer on your file from the first call to the last signature. Your case evaluation is free. Your recovery is the only thing we get paid for.</p>
+    <p class="hero-title rv">Their first offer<br>is <em>never</em> the answer.</p>
+    <p class="hero-sub rv">Beverly Hills personal injury lawyer for the injured and the wronged across Los Angeles — car accidents, dog bites, slip and falls, and California lemon law. One lawyer on your file from the first call to the last signature. Your case evaluation is free. Your recovery is the only thing we get paid for.</p>
     <div class="hero-actions rv">
       <a class="btn btn-solid" href="#contact">Free Case Evaluation</a>
       <a class="btn btn-ghost" href="tel:8335668733">Call (833) 566-8733</a>
@@ -871,25 +999,26 @@ body.menu-open .nav{
     <div class="practice-head">
       <span class="eyebrow rv">Areas of Practice</span>
       <h2 class="rv">Three fights.<br>One <em>standard.</em></h2>
+      <p class="practice-lede rv">From our Beverly Hills office we represent injured people and vehicle owners throughout Los Angeles County — Century City, West Hollywood, Westwood, Brentwood, Santa Monica, Culver City, Mid-Wilshire, Downtown LA and the San Fernando Valley. Lemon law claims are handled statewide.</p>
     </div>
     <div class="practice-grid">
       <article class="pcard rv">
         <span class="pnum">I</span>
-        <h3>Personal Injury</h3>
-        <p>Car accidents, motorcycle collisions, dog bites, and the injuries that follow. You focus on healing; we focus on making the responsible party pay for it — medical bills, lost wages, and the suffering no invoice captures.</p>
-        <a href="personal-injury.html">Learn more →</a>
+        <h3>Personal Injury &amp; Car Accidents</h3>
+        <p>Car accidents, motorcycle collisions, dog bites, slip and falls, and the injuries that follow. You focus on healing; we focus on making the responsible party pay for it — medical bills, lost wages, and the suffering no invoice captures.</p>
+        <a href="personal-injury.html">Personal injury cases →</a>
       </article>
       <article class="pcard rv">
         <span class="pnum">II</span>
         <h3>Lemon Law</h3>
         <p>A new car that keeps breaking isn't bad luck — it's a legal claim. California's lemon law can put a refund, replacement, or cash settlement in your hands, with the manufacturer paying your attorney's fees.</p>
-        <a href="lemon-law.html">Learn more →</a>
+        <a href="lemon-law.html">California lemon law →</a>
       </article>
       <article class="pcard rv">
         <span class="pnum">III</span>
         <h3>Insurance Bad Faith</h3>
         <p>You paid your premiums. When an insurer delays, lowballs, or denies a valid claim, California law gives you a cause of action against them — and we know exactly how to use it.</p>
-        <a href="insurance-bad-faith.html">Learn more →</a>
+        <a href="insurance-bad-faith.html">Insurance bad faith claims →</a>
       </article>
     </div>
   </div>
@@ -1017,7 +1146,7 @@ body.menu-open .nav{
     <div class="faq-list">
       <div class="qa rv">
         <button aria-expanded="false">What should I do after a car accident in California?<span class="plus">+</span></button>
-        <div class="qa-body"><p>Safety first — get medical help if you need it. Once you're safe, photograph the scene, exchange information with the other driver, and report the accident to police if necessary. From there, we take over: we deal with the insurance companies and handle the claims process for you.</p></div>
+        <div class="qa-body"><p>Safety first — get medical help if you need it. Once you're safe, photograph the scene, exchange information with the other driver, and report the accident to police if necessary. From there, we take over: we deal with the insurance companies and handle the claims process for you. More on <a href="personal-injury.html">car accident and personal injury claims</a>.</p></div>
       </div>
       <div class="qa rv">
         <button aria-expanded="false">How long do I have to file a personal injury claim?<span class="plus">+</span></button>
@@ -1033,7 +1162,7 @@ body.menu-open .nav{
       </div>
       <div class="qa rv">
         <button aria-expanded="false">What does it cost to hire you?<span class="plus">+</span></button>
-        <div class="qa-body"><p>Nothing up front. We work on contingency: no fee unless we win. For lemon law cases, California law generally requires the manufacturer to pay your attorney's fees on top of your recovery.</p></div>
+        <div class="qa-body"><p>Nothing up front. We work on contingency: no fee unless we win. For <a href="lemon-law.html">lemon law cases</a>, California law generally requires the manufacturer to pay your attorney's fees on top of your recovery.</p></div>
       </div>
     </div>
   </div>
