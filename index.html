@@ -20,7 +20,7 @@
   --bone:#F1ECE1;           /* warm bone paper */
   --bone-2:#E8E2D4;
   --citron:#D8C64A;         /* ripe citron — reserved for verdicts & accents */
-  --citron-deep:#B8A83A;
+  --citron-deep:#6E6314;            /* darkened from #B8A83A: 5:1 contrast on bone (WCAG AA) */
   --hairline:rgba(216,198,74,.22);
   --hairline-dark:rgba(12,18,13,.14);
   --tx-on-dark:#EDE9DC;
@@ -202,6 +202,19 @@ img,video{display:block;max-width:100%}
   display:flex;align-items:center;gap:4rem;
 }
 .strip-track span i{font-style:normal;color:var(--citron)}
+.strip{position:relative}
+/* pause/play for the moving banner — WCAG 2.2.2 (anything moving > 5s needs a stop) */
+.strip-toggle{
+  position:absolute;right:var(--pad);top:50%;transform:translateY(-50%);z-index:2;
+  width:30px;height:30px;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--pine);border:1px solid var(--hairline);
+  color:var(--tx-on-dark);font-size:.62rem;line-height:1;
+  box-shadow:0 0 0 10px var(--pine);
+  transition:border-color .3s,color .3s;
+}
+.strip-toggle:hover,.strip-toggle:focus-visible{border-color:var(--citron);color:var(--citron)}
+.strip-toggle[hidden]{display:none}
 
 /* ---------- THE RECORD (verdicts ledger — signature) ---------- */
 .record{background:var(--ink)}
@@ -369,7 +382,9 @@ img,video{display:block;max-width:100%}
   transition:transform .4s;flex-shrink:0;
 }
 .qa.open button .plus{transform:rotate(45deg)}
-.qa-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.7,0,.3,1)}
+.qa-body{max-height:0;overflow:hidden;visibility:hidden;transition:max-height .5s cubic-bezier(.7,0,.3,1),visibility 0s linear .5s}
+/* closed answers are hidden from screen readers too, not just squashed to 0px */
+.qa.open .qa-body{visibility:visible;transition-delay:0s}
 .qa-body p{padding:0 0 1.6rem;color:var(--tx-ink-dim);line-height:1.8;font-size:.93rem;max-width:60ch}
 
 /* ---------- contact ---------- */
@@ -428,7 +443,7 @@ img,video{display:block;max-width:100%}
   font-size:.72rem;line-height:1.65;color:var(--tx-dim);
 }
 .consent input{margin-top:.2rem;accent-color:var(--citron)}
-.consent a{color:var(--citron)}
+.consent a{color:var(--citron);text-decoration:underline;text-underline-offset:2px}
 .form button{
   width:100%;background:var(--citron);color:var(--ink);border:0;cursor:pointer;
   font-family:var(--font-mono);font-size:.8rem;letter-spacing:.1em;
@@ -463,7 +478,7 @@ img,video{display:block;max-width:100%}
   border-top:1px solid rgba(237,233,220,.08);
   display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;
-  color:rgba(237,233,220,.4);
+  color:var(--tx-dim);
 }
 
 /* ---------- awards ---------- */
@@ -606,6 +621,16 @@ blockquote.review footer b{color:var(--tx-on-dark);font-weight:500;letter-spacin
 .nav-sub a.current{color:var(--tx-on-dark)}
 .nav-sub a::after{display:none}
 
+/* ---------- skip link (keyboard + screen readers) ---------- */
+.skip-link{
+  position:fixed;left:1rem;top:-4rem;z-index:300;
+  background:var(--citron);color:var(--ink);
+  font-family:var(--font-mono);font-size:.8rem;letter-spacing:.06em;
+  padding:.75rem 1.1rem;border-radius:2px;transition:top .2s;
+}
+.skip-link:focus{top:1rem}
+main:focus{outline:none}
+
 /* ---------- mobile nav ---------- */
 /* NOTE: .nav.scrolled applies backdrop-filter, and backdrop-filter creates a
    containing block for position:fixed descendants — which trapped this panel
@@ -625,9 +650,9 @@ body.menu-open .nav{
     gap:0;
     padding:4.6rem var(--pad) 2.5rem;
     overflow-y:auto;-webkit-overflow-scrolling:touch;
-    transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.3,1);
+    transform:translateY(-100%);visibility:hidden;transition:transform .5s cubic-bezier(.7,0,.3,1),visibility 0s linear .5s;
   }
-  .nav-links.open{transform:translateY(0)}
+  .nav-links.open{transform:translateY(0);visibility:visible;transition:transform .5s cubic-bezier(.7,0,.3,1),visibility 0s}
   .nav-links a{
     font-family:var(--font-display);font-size:1.45rem;line-height:1.2;
     color:var(--tx-on-dark);width:100%;
@@ -699,6 +724,8 @@ body.menu-open .nav{
 <body>
 
 <!-- ================= NAV ================= -->
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <nav class="nav" id="nav">
   <a class="nav-logo" href="#top">
     <img class="logo-img" src="logo_makan.svg" alt="Lemon Tree Law">
@@ -726,11 +753,13 @@ body.menu-open .nav{
   </button>
 </nav>
 
+<main id="main" tabindex="-1">
+
 <!-- ================= HERO ================= -->
 <header class="hero" id="top">
   <div class="hero-media">
     <div class="fallback"></div>
-    <video id="heroVideo" src="hero.mp4" muted loop playsinline preload="auto" poster="hero_poster.jpg"></video>
+    <video id="heroVideo" src="hero.mp4" muted playsinline preload="auto" poster="hero_poster.jpg"></video>
   </div>
   <div class="hero-scrim"></div>
 
@@ -759,8 +788,9 @@ body.menu-open .nav{
 </header>
 
 <!-- ================= STRIP ================= -->
-<div class="strip" aria-hidden="true">
-  <div class="strip-track" id="stripTrack">
+<div class="strip">
+  <button class="strip-toggle" id="stripToggle" type="button" aria-label="Pause scrolling banner" hidden><span aria-hidden="true">❚❚</span></button>
+  <div class="strip-track" id="stripTrack" aria-hidden="true">
     <span>Seven-Figure Results <i>◆</i> No Fee Unless We Win <i>◆</i> Free Case Evaluation <i>◆</i> Beverly Hills, California <i>◆</i> Se Habla Español <i>◆</i></span>
     <span>Seven-Figure Results <i>◆</i> No Fee Unless We Win <i>◆</i> Free Case Evaluation <i>◆</i> Beverly Hills, California <i>◆</i> Se Habla Español <i>◆</i></span>
   </div>
@@ -1067,6 +1097,8 @@ body.menu-open .nav{
 </section>
 
 <!-- ================= FOOTER ================= -->
+</main>
+
 <footer class="footer">
   <div class="footer-grid">
     <div>
@@ -1155,6 +1187,7 @@ body.menu-open .nav{
       e.preventDefault();
       if (lenis) lenis.scrollTo(el, { offset: -70 });
       else el.scrollIntoView({ behavior: 'smooth' });
+      if (el.id === 'main') el.focus({ preventScroll: true });
     });
   });
 
@@ -1175,18 +1208,22 @@ body.menu-open .nav{
       .to(['.hero-meta', '.hero-scroll'], { opacity: 1, duration: .8 }, '-=.5');
   }
 
-  function playHeroLooping() {
+  /* plays through once (~8s) and rests on its final frame — no loop */
+  function playHeroOnce() {
     if (!vid) return;
-    vid.loop = true;
+    vid.loop = false;
     vid.muted = true;
     vid.setAttribute('muted', '');
     vid.setAttribute('playsinline', '');
     vid.setAttribute('webkit-playsinline', '');
+    let done = false;
+    vid.addEventListener('ended', () => { done = true; });
     // iOS Safari refuses the first play() until it feels like it — retry on the
-    // events that historically unblock it.
+    // events that historically unblock it. Once it has finished, never restart it.
     let tries = 0;
     const attempt = () => {
-      if (tries++ > 14) return;
+      if (done || vid.ended || tries++ > 14) return;
+      if (!vid.paused) return;
       const p = vid.play();
       if (p && p.catch) p.catch(() => {});
     };
@@ -1206,7 +1243,7 @@ body.menu-open .nav{
     showHeroInstantly();
   } else {
     revealHero();
-    playHeroLooping();
+    playHeroOnce();
   }
 
   /* ---------- section reveals ---------- */
@@ -1255,7 +1292,17 @@ body.menu-open .nav{
 
   /* ---------- marquee ---------- */
   if (!reduced) {
-    gsap.to('#stripTrack', { xPercent: -50, ease: 'none', duration: 28, repeat: -1 });
+    const stripTween = gsap.to('#stripTrack', { xPercent: -50, ease: 'none', duration: 28, repeat: -1 });
+    const stripBtn = document.getElementById('stripToggle');
+    if (stripBtn) {
+      stripBtn.hidden = false;
+      stripBtn.addEventListener('click', () => {
+        const pause = !stripTween.paused();
+        stripTween.paused(pause);
+        stripBtn.setAttribute('aria-label', pause ? 'Play scrolling banner' : 'Pause scrolling banner');
+        stripBtn.firstElementChild.textContent = pause ? '▶' : '❚❚';
+      });
+    }
   }
 
   /* ---------- FAQ ---------- */

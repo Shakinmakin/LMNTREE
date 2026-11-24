@@ -20,7 +20,7 @@
   --bone:#F1ECE1;           /* warm bone paper */
   --bone-2:#E8E2D4;
   --citron:#D8C64A;         /* ripe citron — reserved for verdicts & accents */
-  --citron-deep:#B8A83A;
+  --citron-deep:#6E6314;            /* darkened from #B8A83A: 5:1 contrast on bone (WCAG AA) */
   --hairline:rgba(216,198,74,.22);
   --hairline-dark:rgba(12,18,13,.14);
   --tx-on-dark:#EDE9DC;
@@ -375,7 +375,9 @@ img,video{display:block;max-width:100%}
   transition:transform .4s;flex-shrink:0;
 }
 .qa.open button .plus{transform:rotate(45deg)}
-.qa-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.7,0,.3,1)}
+.qa-body{max-height:0;overflow:hidden;visibility:hidden;transition:max-height .5s cubic-bezier(.7,0,.3,1),visibility 0s linear .5s}
+/* closed answers are hidden from screen readers too, not just squashed to 0px */
+.qa.open .qa-body{visibility:visible;transition-delay:0s}
 .qa-body p{padding:0 0 1.6rem;color:var(--tx-ink-dim);line-height:1.8;font-size:.93rem;max-width:60ch}
 
 /* ---------- contact ---------- */
@@ -434,7 +436,7 @@ img,video{display:block;max-width:100%}
   font-size:.72rem;line-height:1.65;color:var(--tx-dim);
 }
 .consent input{margin-top:.2rem;accent-color:var(--citron)}
-.consent a{color:var(--citron)}
+.consent a{color:var(--citron);text-decoration:underline;text-underline-offset:2px}
 .form button{
   width:100%;background:var(--citron);color:var(--ink);border:0;cursor:pointer;
   font-family:var(--font-mono);font-size:.8rem;letter-spacing:.1em;
@@ -469,7 +471,7 @@ img,video{display:block;max-width:100%}
   border-top:1px solid rgba(237,233,220,.08);
   display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;
-  color:rgba(237,233,220,.4);
+  color:var(--tx-dim);
 }
 
 /* ---------- awards ---------- */
@@ -590,6 +592,16 @@ blockquote.review footer{
 .nav-sub a.current{color:var(--tx-on-dark)}
 .nav-sub a::after{display:none}
 
+/* ---------- skip link (keyboard + screen readers) ---------- */
+.skip-link{
+  position:fixed;left:1rem;top:-4rem;z-index:300;
+  background:var(--citron);color:var(--ink);
+  font-family:var(--font-mono);font-size:.8rem;letter-spacing:.06em;
+  padding:.75rem 1.1rem;border-radius:2px;transition:top .2s;
+}
+.skip-link:focus{top:1rem}
+main:focus{outline:none}
+
 /* ---------- mobile nav ---------- */
 /* NOTE: .nav.scrolled applies backdrop-filter, and backdrop-filter creates a
    containing block for position:fixed descendants — which trapped this panel
@@ -609,9 +621,9 @@ body.menu-open .nav{
     gap:0;
     padding:4.6rem var(--pad) 2.5rem;
     overflow-y:auto;-webkit-overflow-scrolling:touch;
-    transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.3,1);
+    transform:translateY(-100%);visibility:hidden;transition:transform .5s cubic-bezier(.7,0,.3,1),visibility 0s linear .5s;
   }
-  .nav-links.open{transform:translateY(0)}
+  .nav-links.open{transform:translateY(0);visibility:visible;transition:transform .5s cubic-bezier(.7,0,.3,1),visibility 0s}
   .nav-links a{
     font-family:var(--font-display);font-size:1.45rem;line-height:1.2;
     color:var(--tx-on-dark);width:100%;
@@ -724,6 +736,8 @@ body.menu-open .nav{
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <nav class="nav" id="nav">
   <a class="nav-logo" href="index.html">
     <img class="logo-img" src="logo_makan.svg" alt="Lemon Tree Law">
@@ -751,6 +765,8 @@ body.menu-open .nav{
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<main id="main" tabindex="-1">
 
 <header class="page-hero">
   <div class="wrap">
@@ -905,6 +921,8 @@ body.menu-open .nav{
   </div>
 </section>
 
+</main>
+
 <footer class="footer">
   <div class="footer-grid">
     <div>
@@ -987,6 +1005,7 @@ body.menu-open .nav{
       e.preventDefault();
       if (lenis) lenis.scrollTo(el, { offset: -70 });
       else el.scrollIntoView({ behavior: 'smooth' });
+      if (el.id === 'main') el.focus({ preventScroll: true });
     });
   });
 

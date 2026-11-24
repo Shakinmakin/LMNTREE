@@ -17,6 +17,10 @@ Disallow: /staging/
 # form handler: accepts POST only, nothing to index
 Disallow: /contact.php
 
+# live review-count helper and its cache: data for the homepage, not pages
+Disallow: /reviews.php
+Disallow: /reviews-cache.json
+
 # failure log written by the contact form
 Disallow: /form-errors.log
 
