@@ -1,0 +1,33 @@
+# lemontreelaw.com
+# Static site. Everything public is meant to be indexed.
+
+User-agent: *
+Allow: /
+
+# --- not for crawling ---
+
+# the old WordPress install, parked here for rollback after the migration.
+# it still contains the full previous site — if Google indexes it, those pages
+# compete with the real ones for the same keywords.
+Disallow: /_wp_old/
+
+# staging copy, if it is still present
+Disallow: /staging/
+
+# form handler: accepts POST only, nothing to index
+Disallow: /contact.php
+
+# failure log written by the contact form
+Disallow: /form-errors.log
+
+# --- dead WordPress paths, in case anything still points at them ---
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/
+Disallow: /wp-login.php
+Disallow: /xmlrpc.php
+Disallow: /wp-json/
+Disallow: /?s=
+Disallow: /search/
+
+Sitemap: https://lemontreelaw.com/sitemap.xml
